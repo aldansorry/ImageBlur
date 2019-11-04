@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="50dp"
+    android:background="@drawable/bg_login"
     tools:context=".RegisterActivity">
 
 
@@ -16,12 +17,16 @@
         android:textSize="36dp"
         android:textAlignment="center"
         android:paddingVertical="10dp"
-        android:textColor="@color/primary"/>
+        android:textColor="@color/white"/>
 
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/edt_text_bg"
+        android:padding="15dp"
+        android:textColorHint="#ddd"
+        android:textColor="@color/white"
         android:layout_margin="20dp"
         android:inputType="textEmailAddress"
         android:hint="Email"/>
@@ -29,6 +34,10 @@
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/edt_text_bg"
+        android:padding="15dp"
+        android:textColorHint="#ddd"
+        android:textColor="@color/white"
         android:layout_margin="20dp"
         android:inputType="textPassword"
         android:hint="Password"
@@ -44,15 +53,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/primary"
+            android:backgroundTint="@color/primary_dark"
+            android:background="@drawable/edt_text_bg"
+            android:padding="15dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white"
             android:text="Register"/>
         <Button
             android:id="@+id/btnBack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/secondary_text"
-            android:textColor="#fff"
+            android:backgroundTint="@color/primary_light"
+            android:background="@drawable/edt_text_bg"
+            android:padding="15dp"
+            android:layout_marginRight="5dp"
+            android:textColor="#000"
             android:text="Back"/>
     </LinearLayout>
 

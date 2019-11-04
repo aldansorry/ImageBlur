@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="50dp"
+    android:background="@drawable/bg_login"
     tools:context=".LoginActivity">
 
     <TextView
@@ -15,12 +16,16 @@
         android:textSize="36dp"
         android:textAlignment="center"
         android:paddingVertical="10dp"
-        android:textColor="@color/primary"/>
+        android:textColor="@color/white"/>
 
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/edt_text_bg"
+        android:padding="15dp"
+        android:textColorHint="#ddd"
+        android:textColor="@color/white"
         android:layout_margin="20dp"
         android:inputType="textEmailAddress"
         android:hint="Email"/>
@@ -28,6 +33,10 @@
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/edt_text_bg"
+        android:padding="15dp"
+        android:textColorHint="#ddd"
+        android:textColor="@color/white"
         android:layout_margin="20dp"
         android:inputType="textPassword"
         android:hint="Password"
@@ -44,6 +53,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/primary"
+            android:background="@drawable/edt_text_bg"
+            android:padding="15dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white"
             android:text="Login"/>
         <Button
             android:id="@+id/btnRegister"
@@ -51,6 +64,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/primary_light"
+            android:background="@drawable/edt_text_bg"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/primary_dark"
             android:text="Register"/>
     </LinearLayout>
 
@@ -80,7 +96,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="OR"
-            android:textColor="@color/primary"/>
+            android:textColor="@color/white"/>
 
         <View
             android:layout_width="match_parent"
@@ -88,7 +104,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:layout_toLeftOf="@id/tvText"
-            android:background="@color/accent"
+            android:background="@color/white"
             />
 
         <View
@@ -97,7 +113,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
             android:layout_toRightOf="@id/tvText"
-            android:background="@color/accent"
+            android:background="@color/white"
             />
 
     </RelativeLayout>
@@ -110,12 +126,27 @@
         android:drawableLeft="@drawable/ic_google"
         android:backgroundTint="#4c8bf5"
         android:text="Login Google"
+        android:padding="10dp"
         android:textColor="#fff"/>
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/btnLoginFacebook"
+    <Button
+        android:id="@+id/btnLoginFacebookView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
+        style="@style/Widget.AppCompat.Button"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/ic_facebook"
+        android:textColor="#4267b2"
+        android:text="Login Facebook"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnLoginFacebook"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        style="@style/Widget.AppCompat.Button"
+        android:padding="10dp"
         android:drawableLeft="@drawable/ic_facebook"
         android:textColor="#4267b2"
         android:text="Login Facebook"/>

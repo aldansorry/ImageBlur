@@ -3,6 +3,7 @@ package com.example.imageblur;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +18,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.Login;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -38,11 +40,13 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1023;
     TextView txtForgetPassword;
     EditText edtEmail,edtPassword;
-    Button btnLogin, btnRegister, btnLoginGoogle;
+    Button btnLogin, btnRegister, btnLoginGoogle,btnLoginFacebookView;
     LoginButton btnLoginFacebook;
     private FirebaseAuth mAuth;
 
     CallbackManager callbackManager;
+
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -56,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
         txtForgetPassword = findViewById(R.id.txtForgetPassword);
+        btnLoginFacebookView = findViewById(R.id.btnLoginFacebookView);
         btnLoginFacebook = findViewById(R.id.btnLoginFacebook);
         btnLoginGoogle = findViewById(R.id.btnLoginGoogle);
 
@@ -109,6 +114,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnLoginFacebookView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnLoginFacebook.performClick();
+            }
+        });
+
         btnLoginFacebook.setReadPermissions("email", "public_profile");
         btnLoginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -131,6 +143,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUsernamePassword(String email, String password){
+        if(progressDialog == null){
+            progressDialog = new ProgressDialog(LoginActivity.this);
+        }
+        progressDialog.setMessage("Authenticating");
+        progressDialog.show();
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -144,6 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        progressDialog.dismiss();
                     }
                 });
     }
@@ -163,7 +182,12 @@ public class LoginActivity extends AppCompatActivity {
     //google login
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        
+        if(progressDialog == null){
+            progressDialog = new ProgressDialog(LoginActivity.this);
+        }
+        progressDialog.setMessage("Authenticating");
+        progressDialog.show();
+
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -180,6 +204,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Authetintication Failed", Toast.LENGTH_SHORT).show();
                         }
 
+                        progressDialog.dismiss();
                         // ...
                     }
                 });
@@ -205,6 +230,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private void handleFacebookAccessToken(AccessToken token) {
+        if(progressDialog == null){
+            progressDialog = new ProgressDialog(LoginActivity.this);
+        }
+        progressDialog.setMessage("Authenticating");
+        progressDialog.show();
 
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
@@ -220,6 +250,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
 
                         }
 

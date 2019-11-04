@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/primary_light"
     tools:context=".ResultActivity">
 
     <ImageView
@@ -18,6 +19,11 @@
         android:id="@+id/btnBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        android:background="@drawable/edt_text_bg"
+        android:padding="15dp"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/white"
         android:text="Back"
         />
 
